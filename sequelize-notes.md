@@ -2,19 +2,20 @@
 
 # Contents
 + Relationships
-.. Source and Target
-.. 1:1 relationships
-.. One-to-many Relationships
-.. Many-to-many Relationships
+  * Source and Target
+  * 1:1 relationships
+  * One-to-many Relationships
+  * Many-to-many Relationships
 + Model methods
-.. getter
-.. setter
-.. class
-.. instance
-.. hooks
+  * getter
+  * setter
+  * class
+  * instance
+  * hooks
 + Querying
-.. types
-.. Eager loading
+  * Types
+  * Complex queries
+  * Eager loading
 
 
 # Relationships
@@ -175,6 +176,22 @@ hooks: {
 Model.findAll()
 Model.findById()
 Model.findOne()
+```
+
+## Complex queries
+Find more information in the docs for [Querying > Where](http://docs.sequelizejs.com/en/latest/docs/querying/#where).
+
+```js
+getSiblings: function() {
+    return Task.findAll({
+        where: {
+            parentId: this.parentId, // Find all with same parent id
+            id: {
+                $ne: this.id // Exclude itself from search
+            }
+        }
+    });
+}
 ```
 
 ## Eager loading

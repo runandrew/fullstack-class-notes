@@ -6,6 +6,7 @@
   * req.query
   * req.body
 + App.params
++ Error logging middleware
 
 
 # Extracting data from either URI or request body
@@ -52,4 +53,23 @@ router.param("id", (req, res, next, id) => {
     })
     .catch();
 });
+```
+
+# Error logging middleware
+
+The basic structure of a app wide error catcher is:
+```js
+// Error handling
+app.use((err, req, res, next) => {
+    res.status(err.status || 500).send(err.message || 'Internal server error');
+});
+```
+
+Here is a helper function to create new Error instances:
+```js
+function createError(status, message) {
+    const err = new Error(message);
+    err.status = status;
+    return err;
+}
 ```
