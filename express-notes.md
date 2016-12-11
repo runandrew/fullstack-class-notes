@@ -2,9 +2,9 @@
 
 # Contents
 + Extracting data from either URI or request body
-..* req.params
-..* req.query
-..* req.body
+  * req.params
+  * req.query
+  * req.body
 + App.params
 
 
