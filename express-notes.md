@@ -73,3 +73,17 @@ function createError(status, message) {
     return err;
 }
 ```
+
+Use the `createError` function as follows in your routes:
+```js
+Book.findById(bookId, queryObj) // Find the book by ID
+.then((foundBook) => {
+    if (foundBook) {
+        req._book = foundBook; // Set the found book to the request variable
+        next();
+    } else {
+        next(createError(404, 'book not found'));
+    }
+})
+.catch(next);
+```
