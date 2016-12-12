@@ -249,6 +249,13 @@ Secret.findById(req.params.secretId, {
 })
 ```
 
+If there is an aliased association, use the following:
+```js
+Secret.findById(req.params.secretId, {
+    include: [{model: User, as: 'director'}]
+})
+```
+
 Eager load all relationships
 ```js
 { include: [ {all: true } ]}
